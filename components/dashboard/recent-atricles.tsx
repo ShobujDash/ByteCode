@@ -15,23 +15,24 @@ import { Badge } from "../ui/badge";
 import type { Prisma } from "@prisma/client";
 
 
-type RecentArticlesProps = {
-  articles: Prisma.ArticlesGetPayload<{
-    include: {
-      comments: true;
-      author: {
-        select: {
-          name: true;
-          email: true;
-          imageUrl: true;
-        };
-      };
-    };
-  }>[];
-};
+// type RecentArticlesProps = {
+//   articles: Prisma.ArticlesGetPayload<{
+//     include: {
+//       comments: true;
+//       author: {
+//         select: {
+//           name: true;
+//           email: true;
+//           imageUrl: true;
+//         };
+//       };
+//     };
+//   }>[];
+// };
 
 
-const RecentArticles: React.FC<RecentArticlesProps> = ({ articles }) => {
+// const RecentArticles: React.FC<RecentArticlesProps> = ({ articles }) => {
+const RecentArticles= () => {
   return (
     <Card className="mb-8">
       <CardHeader>
