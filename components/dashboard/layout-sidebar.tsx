@@ -10,7 +10,7 @@ const LayoutSidebar = () => {
 
   return (
     <div>
-      <Sheet className={isOpen} onOpenChange={setIsOpen}>
+      <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger asChild>
           <Button variant={"outline"} className="md:hidden m-2 md:m-4">
             <LayoutDashboard className="h-5 w-5" />
