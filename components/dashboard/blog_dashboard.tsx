@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import RecentArticles from "./recent-atricles";
-import { prisma } from "@/lib/prisma";
 
 const BlogDashboard = () => {
 //  const [articles, totalComments] = await Promise.all([
