@@ -11,6 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
+import { Badge } from "../ui/badge";
 
 const RecentArticles: React.FC<RecentArticlesProps> = ({ articles }) => {
   return (
@@ -39,19 +40,20 @@ const RecentArticles: React.FC<RecentArticlesProps> = ({ articles }) => {
             <TableRow>
               <TableCell className="font-medium">sdlkfjasd</TableCell>
               <TableCell>
-                <span className="px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">
+                <Badge className="rounded-full text-xs bg-green-100 text-green-800">
                   Published
-                </span>
+                </Badge>
               </TableCell>
               <TableCell>5</TableCell>
               <TableCell>23 April</TableCell>
               <TableCell>
                 <div className="flex gap-2">
-                  <Link href={`/dashboard/articles/5/edit`}>
+                  <Link href={`/dashboard/articles/${5}/edit`}>
                     <Button variant="ghost" size="sm">
                       Edit
                     </Button>
                   </Link>
+                  <DeleteButton/>
                 </div>
               </TableCell>
             </TableRow>
@@ -63,3 +65,12 @@ const RecentArticles: React.FC<RecentArticlesProps> = ({ articles }) => {
 };
 
 export default RecentArticles;
+
+
+const DeleteButton = () => {
+  return (
+    <form>
+      <Button variant={'ghost'} size={"sm"} type="submit">Delete</Button>
+    </form>
+  )
+}
