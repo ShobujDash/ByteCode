@@ -12,7 +12,6 @@ import {
   TableRow,
 } from "../ui/table";
 import { Badge } from "../ui/badge";
-import type { Prisma } from "@prisma/client";
 
 
 // type RecentArticlesProps = {
