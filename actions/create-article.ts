@@ -70,7 +70,7 @@ export const createArticles = async (
 
   // Start creating articles
 
-  const imageFile = formData.get("featuredImage") as file | null;
+  const imageFile = formData.get("featuredImage") as File | null;
   if (!imageFile || imageFile.name === "undefined") {
     return {
       errors: {
