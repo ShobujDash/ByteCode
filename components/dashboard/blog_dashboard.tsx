@@ -3,8 +3,29 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import RecentArticles from "./recent-atricles";
+import { prisma } from "@/lib/prisma";
 
 const BlogDashboard = () => {
+//  const [articles, totalComments] = await Promise.all([
+//    prisma.articles.findMany({
+//      orderBy: {
+//        createdAt: "desc",
+//      },
+//      include: {
+//        comments: true,
+//        author: {
+//          select: {
+//            name: true,
+//            email: true,
+//            imageUrl: true,
+//          },
+//        },
+//      },
+//    }),
+//    prisma.comment.count(),
+//  ]);
+
+
   return (
     <main className="flex-1 p-2 md:p-8">
       <div className="flex justify-between items-center mb-8">
