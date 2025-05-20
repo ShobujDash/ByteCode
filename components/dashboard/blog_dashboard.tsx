@@ -1,33 +1,33 @@
-import { FileText, MessageCircle, PlusCircle } from "lucide-react";
+import { prisma } from "@/lib/prisma";
+import { Clock, FileText, MessageCircle, PlusCircle } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import RecentArticles from "./recent-atricles";
 
-const BlogDashboard = () => {
-//  const [articles, totalComments] = await Promise.all([
-//    prisma.articles.findMany({
-//      orderBy: {
-//        createdAt: "desc",
-//      },
-//      include: {
-//        comments: true,
-//        author: {
-//          select: {
-//            name: true,
-//            email: true,
-//            imageUrl: true,
-//          },
-//        },
-//      },
-//    }),
-//    prisma.comment.count(),
-//  ]);
-
+const BlogDashboard = async () => {
+  const [articles, totalComments] = await Promise.all([
+    prisma.articles.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+      include: {
+        comments: true,
+        author: {
+          select: {
+            name: true,
+            email: true,
+            imageUrl: true,
+          },
+        },
+      },
+    }),
+    prisma.comment.count(),
+  ]);
 
   return (
-    <main className="flex-1 p-2 md:p-8">
-      <div className="flex justify-between items-center mb-8">
+    <main className=" md:p-8 m-4">
+      <div className="flex flex-col sm:flex-row gap-2 justify-between items-center mb-8">
         <div>
           <h1 className="font-bold text-2xl">Blog Dashboard</h1>
           <p>Manage your content and anlytics</p>
@@ -43,8 +43,8 @@ const BlogDashboard = () => {
       </div>
 
       {/* quick starts */}
-      <div className="grid grid-cols-3 gap-3 mb-8">
-        <Card>
+      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-8">
+        <Card >
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="font-medium text-sm">
               Totol Articles
@@ -52,11 +52,11 @@ const BlogDashboard = () => {
             <FileText className="w-4 h-4" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">2</div>
+            <div className="text-2xl font-bold">{articles.length}</div>
             <p className="text-sm text-muted-foreground">+5 form last month</p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="font-medium text-sm">
               Totol Comments
@@ -64,18 +64,18 @@ const BlogDashboard = () => {
             <MessageCircle className="w-4 h-4" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">2</div>
+            <div className="text-2xl font-bold">{totalComments}</div>
             <p className="text-sm text-muted-foreground">
               12 awaiting modaration
             </p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="font-medium text-sm">
               Avg. Rating Time
             </CardTitle>
-            <FileText className="w-4 h-4" />
+            <Clock className="w-4 h-4" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">2</div>
@@ -87,8 +87,7 @@ const BlogDashboard = () => {
       </div>
 
       {/* Recent Articles */}
-      <RecentArticles/>
-
+      <RecentArticles articles={articles} />
     </main>
   );
 };
